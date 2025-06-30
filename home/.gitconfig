@@ -1,0 +1,11 @@
+[init]
+	defaultBranch = main
+[diff]
+	tool = meld
+[merge]
+	tool = meld
+[gui]
+	editor = nvim
+[include]
+    path = ~/.gitconfig.d/init
+

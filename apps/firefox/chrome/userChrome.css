@@ -1,0 +1,262 @@
+/* Change all UI elements font */
+
+* {
+    font-family: "Noto Sans", sans-serif;
+    font-weight: normal;
+}
+
+/* Slimmer tab bar */
+
+#tabbrowser-tabs,
+#tabbrowser-arrowscrollbox,
+#tabbrowser-tab,
+.tabbrowser-tab,
+.tab-stack,
+.tab-content,
+.tab-background {
+    height: 32px !important;
+    min-height: 32px !important;
+    margin-bottom: 0 !important;
+}
+
+:root {
+    --tab-min-height: 0 !important;
+    --tab-block-margin: 0 !important;
+}
+
+/* Container indicators on sides of tab */
+
+#tabbrowser-tabs .tab-background {
+    border-right: solid 2px var(--identity-icon-color, initial) !important;
+    border-left: solid 2px var(--identity-icon-color, initial) !important;
+    transition: all .15s ease-in-out !important;
+}
+
+#tabbrowser-tabs .tab-background[selected] {
+    border-right: solid 4px var(--identity-icon-color, initial) !important;
+    border-left: solid 4px var(--identity-icon-color, initial) !important;
+      transition: all .15s ease-in-out !important;
+}
+
+/* Container color on tab text */
+#tabbrowser-tabs .tab-label {
+    color: var(--identity-tab-color) !important;
+}
+
+/* Hide URL bar indicators with fade-in-out animation */
+
+/* --- Disabled by default ---
+.urlbar-input-container>#page-action-buttons {
+    opacity: 0;
+    transition: all .5s ease-in-out;
+}
+
+.urlbar-input-container:hover>#page-action-buttons {
+    animation: .5s delayedFadeIn ease-in-out;
+    opacity: 1;
+}
+
+@keyframes delayedFadeIn {
+    0% {
+        opacity: 0;
+    }
+    35% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+*/
+
+/* Close tab button */
+
+#tabs-newtab-button .toolbarbutton-icon,
+#alltabs-button .toolbarbutton-icon {
+    width: 32px !important;
+    padding: 8px !important;
+}
+
+#navigator-toolbox {
+    /* Remove black border */
+    margin-bottom: -1px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23) !important;
+    z-index: 1000 !important;
+}
+
+.tab-label-container {
+    font-size: 13px;
+}
+
+.tabbrowser-tab .tab-close-button {
+    display: none !important;
+    border-radius: 8px !important;
+}
+
+.tabbrowser-tab[selected="true"]:not([pinned]):hover .tab-close-button {
+    display: block !important;
+    position: relative;
+}
+
+/* Fix spacing of the "arrow down" tabs button */
+
+.titlebar-spacer {
+    width: 8px !important;
+}
+
+/* Navigation bar */
+ .urlbar-input-box {
+    font-size: 13px !important;
+    font-weight: light !important;
+}
+
+#nav-bar {
+    position: absolute !important;
+    top: 40px !important;
+    left: 8px !important;
+    right: 8px !important;
+    height: 0px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23) !important;
+    z-index: 1002 !important;
+    min-height: 0px !important;
+    transition: height var(--animation-easing-function) 500ms 500ms, opacity var(--animation-easing-function) 500ms 500ms !important;
+    opacity: 0 !important;
+    #urlbar {
+        height: 0px !important;
+        min-height: 0px !important;
+        transition: height var(--animation-easing-function) 500ms 500ms, opacity var(--animation-easing-function) 500ms 500ms !important;
+        opacity: 0 !important;
+    }
+}
+
+:root[customizing] #nav-bar,
+#navigator-toolbox:hover #nav-bar,
+#nav-bar:focus-within {
+    height: 40px !important;
+    opacity: 100 !important;
+    transition: height var(--animation-easing-function) 500ms 200ms, opacity var(--animation-easing-function) 500ms 200ms !important;
+    #urlbar {
+           height: 33px !important;
+           opacity: 100 !important;
+           transition: height var(--animation-easing-function) 500ms 200ms, opacity var(--animation-easing-function) 500ms 200ms !important;
+    }
+}
+
+#urlbar[breakout] {
+    top: unset !important;
+}
+
+#nav-bar:focus-within #urlbar-input {
+    height: 28px !important;
+}
+
+.urlbar-input-container {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.urlbarView {
+    position: absolute !important;
+    background-color: light-dark(#1e1e2e, #1e1e2e) !important;
+    border-radius: 4px !important;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23) !important;
+}
+
+/* Navigation bar buttons */
+
+toolbarbutton#back-button,
+toolbarbutton#forward-button {
+    width: 42px !important;
+    transition: width var(--animation-easing-function) 500ms, opacity var(--animation-easing-function) 500ms !important;
+}
+
+toolbarbutton#back-button {
+    background-color: light-dark(color-mix(in srgb, var(--toolbar-bgcolor), black 3%), color-mix(in srgb, var(--toolbar-bgcolor), black 20%)) !important;
+    border-radius: 4px 0px 0px 4px;
+    margin: 4px 0px 4px 20px !important;
+}
+
+toolbarbutton#forward-button {
+    background-color: light-dark(color-mix(in srgb, var(--toolbar-bgcolor), black 3%),
+            color-mix(in srgb, var(--toolbar-bgcolor), black 20%)) !important;
+    border-radius: 0px;
+    margin: 4px -1px 4px 0px !important;
+}
+
+:root:not([customizing]) #nav-bar toolbarbutton#back-button[disabled=true] {
+    width: 4px !important;
+    opacity: 1 !important;
+}
+
+:root:not([customizing]) #nav-bar toolbarbutton#back-button[disabled=true] .toolbarbutton-icon {
+    opacity: 0;
+}
+
+:root:not([customizing]) #nav-bar toolbarbutton#forward-button[disabled=true] {
+    width: 4px !important;
+    opacity: 1 !important;
+}
+
+:root:not([customizing]) #nav-bar toolbarbutton#forward-button[disabled=true] .toolbarbutton-icon {
+    opacity: 0;
+}
+
+#stop-reload-button {
+    background-color: light-dark(color-mix(in srgb, var(--toolbar-bgcolor), black 3%),
+            color-mix(in srgb, var(--toolbar-bgcolor), black 20%)) !important;
+    padding: 4px !important;
+    border-radius: 0px;
+    margin: 4px 0px 4px 0px !important;
+    z-index: 5;
+}
+
+toolbarbutton#back-button:hover,
+toolbarbutton#forward-button:hover,
+#stop-reload-button:hover {
+    z-index: 10;
+}
+
+toolbarbutton#back-button .toolbarbutton-icon,
+toolbarbutton#forward-button .toolbarbutton-icon,
+#stop-reload-button .toolbarbutton-icon {
+    height: 30px !important;
+}
+
+#urlbar-background {
+    border-radius: 0 4px 4px 0 !important;
+    margin-left: -4px;
+    z-index: -1;
+}
+
+#urlbar {
+    padding-left: 8px !important;
+}
+
+#bookmarks-menu-button {
+    margin-right: 16px !important;
+}
+
+/* Bookmarks bar */
+
+#PersonalToolbar {
+    position: absolute !important;
+    top: 86px !important;
+    left: 8px !important;
+    right: 8px !important;
+    height: 0px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23) !important;
+    z-index: 1001 !important;
+    min-height: 0px !important;
+    transition: height var(--animation-easing-function) 500ms 500ms, opacity var(--animation-easing-function) 500ms 500ms !important;
+    opacity: 0 !important;
+}
+
+:root[customizing] #PersonalToolbar,
+#navigator-toolbox:hover #PersonalToolbar,
+#PersonalToolbar:focus-within {
+    height: 40px !important;
+    opacity: 100 !important;
+    transition: height var(--animation-easing-function) 500ms 200ms, opacity var(--animation-easing-function) 500ms 200ms !important;
+}
