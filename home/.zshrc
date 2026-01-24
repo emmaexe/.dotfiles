@@ -1,36 +1,9 @@
-# ----- Begin Oh My Zsh and Powerlevel10k -----
-
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n] confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-# Path to the Oh My Zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
-ZSH_THEME="powerlevel10k/powerlevel10k"
-
-# Autocomplete settings
-#CASE_SENSITIVE="true"
-#HYPHEN_INSENSITIVE="true"
-
-# Oh My Zsh update settings
-#zstyle ':omz:update' mode disabled  # disable automatic updates
-#zstyle ':omz:update' mode auto      # update automatically without asking
-#zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-
-HIST_STAMPS="yyyy-mm-dd"
-
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting command-not-found colored-man-pages gradle sudo)
-
-source $ZSH/oh-my-zsh.sh
-
-# Powerlevel10k prompt; To customize, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# ----- End Oh My Zsh and Powerlevel10k -----
-
+# Setup prompt and plugin manager
+plugins=(zsh-autosuggestions zsh-syntax-highlighting command-not-found colored-man-pages) # vi-mode  colorize
+zstyle ':omz:update' mode reminder
+zstyle ':omz:update' verbose minimal
+source $HOME/.oh-my-zsh/oh-my-zsh.sh
+eval "$(starship init zsh)"
 
 # Setup PATH
 if ! [[ "$PATH" =~ "$HOME/.local/bin:" ]]; then
@@ -38,7 +11,7 @@ if ! [[ "$PATH" =~ "$HOME/.local/bin:" ]]; then
 fi
 export PATH
 
-# Source user defined aliases and functions
+# Installation-specific functions and aliases
 if [ -d ~/.bashrc.d ]; then
     for rc in ~/.bashrc.d/*; do
         if [ -f "$rc" ]; then
@@ -48,18 +21,18 @@ if [ -d ~/.bashrc.d ]; then
 fi
 unset rc
 
-# Shell options
+# Global functions and aliases
+y() {
+    local tmp="$(mktemp -t yazi-cwd.XXXXXX)"
+    yazi "$@" --cwd-file="$tmp"
+    if [ -f "$tmp" ]; then
+        cd "$(cat "$tmp")"
+        rm -f "$tmp"
+    fi
+}
+alias ls='ls -lah --color=auto --group-directories-first --hyperlink=auto'
+
+# Shell and other options
+export HIST_STAMPS="yyyy-mm-dd"
 export HISTCONTROL=ignoreboth
-
-# Shell aliases
-alias ll="ls -laF"
-alias gitfetch="onefetch"
-
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR="nvim"
-else
-  export EDITOR="nvim"
-fi
-
-
+export EDITOR="hx"

@@ -5,7 +5,9 @@
 [merge]
 	tool = meld
 [gui]
-	editor = nvim
+	editor = hx
 [include]
-    path = ~/.gitconfig.d/init
+    path = ~/.gitconfig.d/gitconfig
 
+[gpg]
+	format = ssh

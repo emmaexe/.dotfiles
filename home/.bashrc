@@ -1,7 +1,5 @@
-# Source global bashrc
-if [ -f /etc/bashrc ]; then
-    source /etc/bashrc
-fi
+# Setup prompt
+eval "$(starship init bash)"
 
 # Setup PATH
 if ! [[ "$PATH" =~ "$HOME/.local/bin:" ]]; then
@@ -9,7 +7,7 @@ if ! [[ "$PATH" =~ "$HOME/.local/bin:" ]]; then
 fi
 export PATH
 
-# Source user defined aliases and functions
+# Installation-specific functions and aliases
 if [ -d ~/.bashrc.d ]; then
     for rc in ~/.bashrc.d/*; do
         if [ -f "$rc" ]; then
@@ -19,26 +17,18 @@ if [ -d ~/.bashrc.d ]; then
 fi
 unset rc
 
-# Shell options
-HISTCONTROL=ignoreboth
-HISTSIZE=10000
-HISTFILESIZE=2000
-shopt -s histappend
-shopt -s dirspell
+# Global functions and aliases
+y() {
+    local tmp="$(mktemp -t yazi-cwd.XXXXXX)"
+    yazi "$@" --cwd-file="$tmp"
+    if [ -f "$tmp" ]; then
+        cd "$(cat "$tmp")"
+        rm -f "$tmp"
+    fi
+}
+alias ls='ls -lah --color=auto --group-directories-first --hyperlink=auto'
 
-# Shell aliases
-alias ll='ls -laF'
-alias gitfetch=onefetch
-
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR="nvim"
-else
-  export EDITOR="nvim"
-fi
-
-# Prompt
-if which starship >/dev/null 2>&1; then
-    eval "$(starship init bash)"
-fi
-
+# Shell and other options
+export HIST_STAMPS="yyyy-mm-dd"
+export HISTCONTROL=ignoreboth
+export EDITOR="hx"
