@@ -105,6 +105,7 @@
 }
 
 /* Navigation bar */
+/*
  .urlbar-input-box {
     font-size: 13px !important;
     font-weight: light !important;
@@ -162,9 +163,11 @@
     border-radius: 4px !important;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23) !important;
 }
+*/
 
 /* Navigation bar buttons */
 
+/*
 toolbarbutton#back-button,
 toolbarbutton#forward-button {
     width: 42px !important;
@@ -236,6 +239,7 @@ toolbarbutton#forward-button .toolbarbutton-icon,
 #bookmarks-menu-button {
     margin-right: 16px !important;
 }
+*/
 
 /* Bookmarks bar */
 
