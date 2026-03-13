@@ -26,7 +26,9 @@ y() {
         rm -f "$tmp"
     fi
 }
+alias z='zellij'
 alias ls='ls -lah --color=auto --group-directories-first --hyperlink=auto'
+alias git-cleanup-branches='git branch --merged origin/main | grep -vE "^\s*(\*|main|dev)" | xargs -n 1 git branch -d'
 
 # Shell and other options
 export HIST_STAMPS="yyyy-mm-dd"

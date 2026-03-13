@@ -13,7 +13,7 @@ export PATH
 
 # Installation-specific functions and aliases
 if [ -d ~/.bashrc.d ]; then
-    for rc in ~/.bashrc.d/*; do
+    for rc in ~/.bashrc.d/*(N); do
         if [ -f "$rc" ]; then
             source "$rc"
         fi
