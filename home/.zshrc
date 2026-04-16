@@ -1,8 +1,9 @@
 # Setup prompt and plugin manager
 plugins=(zsh-autosuggestions zsh-syntax-highlighting command-not-found colored-man-pages) # vi-mode  colorize
-zstyle ':omz:update' mode reminder
+zstyle ':omz:update' mode disabled
 zstyle ':omz:update' verbose minimal
-source $HOME/.oh-my-zsh/oh-my-zsh.sh
+export ZSH_CUSTOM="$HOME/.dotfiles/external/zsh"
+source $HOME/.dotfiles/external/zsh/oh-my-zsh/oh-my-zsh.sh
 eval "$(starship init zsh)"
 
 # Setup PATH
@@ -35,6 +36,7 @@ alias ls='ls -lah --color=auto --group-directories-first --hyperlink=auto'
 alias git-cleanup-branches='git branch --merged origin/main | grep -vE "^\s*(\*|main|dev)" | xargs -n 1 git branch -d'
 
 # Shell and other options
+export HISTFILE=~/.zsh_history
 export HIST_STAMPS="yyyy-mm-dd"
 export HISTCONTROL=ignoreboth
 export EDITOR="hx"

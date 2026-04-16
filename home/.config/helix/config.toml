@@ -32,6 +32,7 @@ skip-levels = 0
 "esc" = ["keep_primary_selection", "collapse_selection"]
 "S-up" = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before", "flip_selections", "collapse_selection"]
 "S-down" = ["extend_to_line_bounds", "delete_selection", "paste_after", "select_mode", "goto_line_start", "normal_mode"]
+"S-w" = ":toggle-option soft-wrap.enable"
 
 [keys.select]
 "end" = "goto_line_end_newline"
